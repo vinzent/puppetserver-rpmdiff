@@ -1,0 +1,150 @@
+#!/bin/bash
+#
+# DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE
+# DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE
+# DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE
+#
+# Script installs and deletes files and rpms !!!! Use at your own
+# risk.
+#
+# DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE
+# DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE
+# DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE DANGERZONE
+#
+# Prerequisites:
+#  * Puppet yum repo configured
+#  * git installed
+#  * EL7 (RHEL 7, CentOS 7)
+#
+# Usage:
+#   dangerous-diff-generator <pkg-basename> <pkg-version0> <pkg-version1> [<pkg-version2> ...]
+#
+# Example:
+#   dangerous-diff-generator puppetserver $(repoquery --show-duplicates puppetserver)
+#
+#
+
+set -e
+set -u
+set -o pipefail
+
+exithandler() {
+  exitcode=$?
+
+  if [ "$exitcode" != "0" ]; then
+    echo "ERROR: unsuccsessfull exitcode: $exitcode" >&2
+  fi
+
+  echo $gitdir
+
+  exit $exitcode
+}
+
+trap exithandler EXIT
+ 
+remove() {
+  local pkg=$1
+  local configdir=$2
+  local rpmdir=$3
+
+  configfiles=$(rpm_configfiles $pkg)
+  if [ -n "$configfiles" ]; then
+    rm -f $configfiles
+  fi
+
+  rm -rf "${configdir}"
+  install -d "${configdir}"
+
+  rm -rf "${rpmdir}/*"
+  install -d "${rpmdir}"
+
+  yum erase -y -q $pkg
+}
+
+
+install_pkg() {
+  yum install -y -q $1
+}
+
+installed_pkg_version() {
+  rpm -q --queryformat "%{NAME}-%{VERSION}-%{RELEASE}\n" $1
+}
+
+commit_and_tag() {
+  local gitdir=$1
+  local version=$2
+
+  cd $gitdir
+
+  git add -A ./*
+
+  if git status --porcelain | grep '.' >/dev/null; then
+    git commit -m "version: $version"
+  fi
+
+  git tag -a -m "version: $version" $version
+}
+
+rpm_filelist() {
+  rpm -q --queryformat '[%{FILENAMES} mode=%{FILEMODES:perms} owner=%{FILEUSERNAME} group=%{FILEGROUPNAME} md5=%{FILEMD5S}\n]' $1
+}
+
+rpm_configfiles() {
+  rpm -qc $1 || :
+}
+
+rpm_scripts() {
+  rpm -q --scripts $1
+}
+
+copy_configs() {
+  local pkg=$1
+  local dest=$2
+
+  configfiles=$(rpm_configfiles $pkg)
+  if [ -n "$configfiles" ]; then
+    for file in $configfiles; do
+      install -T -D "$file" "${dest}${file}"
+    done
+  fi
+}
+
+
+git_init() {
+  local gitdir=$1
+  local generator_script=$(realpath $0)
+  cd $gitdir
+  git init
+  cp $generator_script ./dangerous-diff-generator
+  git add .
+  git commit -m "Add generator script"
+}
+
+pkg_basename=$1
+shift;
+
+
+gitdir=$(mktemp -d -t config-diff.XXXXXXX)
+dest_configs=${gitdir}/configs
+dest_rpmlists=${gitdir}/rpm
+dest_rpm_filelist=${dest_rpmlists}/filelist
+dest_rpm_configfiles=${dest_rpmlists}/configfiles
+dest_rpm_scripts=${dest_rpmlists}/scripts
+
+install -d $dest_configs
+install -d $dest_rpmlists
+
+git_init $gitdir
+
+for pkg in "$@"; do
+  remove $pkg_basename $dest_configs $dest_rpmlists
+  install_pkg $pkg
+ 
+  rpm_configfiles $pkg_basename >$dest_rpm_configfiles
+  rpm_filelist $pkg_basename >$dest_rpm_filelist
+  rpm_scripts $pkg_basename >$dest_rpm_scripts
+
+  copy_configs $pkg_basename $dest_configs
+
+  commit_and_tag $gitdir $(installed_pkg_version $pkg_basename)
+done
