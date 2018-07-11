@@ -18,21 +18,38 @@ postinstall scriptlet (using /bin/sh):
 # Reload the systemd units
 systemctl daemon-reload >/dev/null 2>&1 || :
 
-if [ $1 -eq 1 ] ; then 
-        # Initial installation 
-        systemctl preset puppetserver.service >/dev/null 2>&1 || : 
+if [ "$1" -eq 0 -a -x /usr/bin/systemctl ]; then					
+	# Package removal, not upgrade							
+	/usr/bin/systemctl --no-reload disable puppetserver.service || :				
+	(
+		test "$YAST_IS_RUNNING" = instsys && exit 0
+		test -f /etc/sysconfig/services -a \
+		     -z "$DISABLE_STOP_ON_REMOVAL" && . /etc/sysconfig/services
+		test "$DISABLE_STOP_ON_REMOVAL" = yes -o \
+		     "$DISABLE_STOP_ON_REMOVAL" = 1 && exit 0
+		/usr/bin/systemctl stop puppetserver.service
+	) || : 		
 fi
 preuninstall scriptlet (using /bin/sh):
 
-if [ $1 -eq 0 ] ; then 
-        # Package removal, not upgrade 
-        systemctl --no-reload disable puppetserver.service > /dev/null 2>&1 || : 
-        systemctl stop puppetserver.service > /dev/null 2>&1 || : 
+if [ "$1" -eq 0 -a -x /usr/bin/systemctl ]; then					
+	# Package removal, not upgrade							
+	/usr/bin/systemctl --no-reload disable puppetserver.service || :				
+	(
+		test "$YAST_IS_RUNNING" = instsys && exit 0
+		test -f /etc/sysconfig/services -a \
+		     -z "$DISABLE_STOP_ON_REMOVAL" && . /etc/sysconfig/services
+		test "$DISABLE_STOP_ON_REMOVAL" = yes -o \
+		     "$DISABLE_STOP_ON_REMOVAL" = 1 && exit 0
+		/usr/bin/systemctl stop puppetserver.service
+	) || : 		
 fi
 postuninstall scriptlet (using /bin/sh):
 
-systemctl daemon-reload >/dev/null 2>&1 || : 
-if [ $1 -ge 1 ] ; then 
-        # Package upgrade, not uninstall 
-        systemctl try-restart puppetserver.service >/dev/null 2>&1 || : 
+if [ -x /usr/bin/systemctl ]; then							
+	/usr/bin/systemctl daemon-reload || :						
+fi											
+if [ "$1" -ge 1 -a -x /usr/bin/systemctl ]; then					
+	# Package upgrade, not uninstall						
+	/usr/bin/systemctl try-restart puppetserver.service || :					
 fi
