@@ -14,7 +14,7 @@
 /opt/puppetlabs/bin/puppetserver mode=lrwxrwxrwx owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/bin mode=drwxr-xr-x owner=root group=root md5=
-/opt/puppetlabs/server/apps/puppetserver/bin/puppetserver mode=-rwxr-xr-x owner=root group=root md5=3e45901ab1e7464a88a30f89b3000928
+/opt/puppetlabs/server/apps/puppetserver/bin/puppetserver mode=-rwxr-xr-x owner=root group=root md5=714f8bcc70f17e8f400e7e7983be2b1a
 /opt/puppetlabs/server/apps/puppetserver/cli mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/cli/apps mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/cli/apps/foreground mode=-rwxr-xr-x owner=root group=root md5=4333fd71c51238805a617b1ea31be261
@@ -29,12 +29,12 @@
 /opt/puppetlabs/server/apps/puppetserver/config/services.d mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/config/services.d/bootstrap.cfg mode=-rw-r--r-- owner=root group=root md5=74f185e02caa195bdb7d1ccb4750d3d6
 /opt/puppetlabs/server/apps/puppetserver/ezbake-functions.sh mode=-rwxr-xr-x owner=root group=root md5=c130f4a6e05ed169b43417ec015323e7
-/opt/puppetlabs/server/apps/puppetserver/ezbake.manifest mode=-rw-r--r-- owner=root group=root md5=49d30be6a275bf85f47269ab2b88e7e6
-/opt/puppetlabs/server/apps/puppetserver/jruby-1_7.jar mode=-rw-r--r-- owner=root group=root md5=84357744e4094173fb9d38c57611bf7a
-/opt/puppetlabs/server/apps/puppetserver/jruby-9k.jar mode=-rw-r--r-- owner=root group=root md5=fb387ca57f28d4292503b1606c196725
-/opt/puppetlabs/server/apps/puppetserver/puppet-server-release.jar mode=-rw-r--r-- owner=root group=root md5=0b3def4ab4ab4008dd8dc454378908b5
+/opt/puppetlabs/server/apps/puppetserver/ezbake.manifest mode=-rw-r--r-- owner=root group=root md5=7fc6e6ab17ab4bd6a96e9d215fad20c9
+/opt/puppetlabs/server/apps/puppetserver/jruby-1_7.jar mode=-rw-r--r-- owner=root group=root md5=bd80c7861a03af89c9e95e252443c934
+/opt/puppetlabs/server/apps/puppetserver/jruby-9k.jar mode=-rw-r--r-- owner=root group=root md5=a876fe5c3b040a4bf5867e771abff7ac
+/opt/puppetlabs/server/apps/puppetserver/puppet-server-release.jar mode=-rw-r--r-- owner=root group=root md5=3a358bf820e8c382ec32f0a411ad18e3
 /opt/puppetlabs/server/apps/puppetserver/scripts mode=drwxr-xr-x owner=root group=root md5=
-/opt/puppetlabs/server/apps/puppetserver/scripts/install.sh mode=-rwxr-xr-x owner=root group=root md5=bcb9355709461bd03022ce77e715c7c5
+/opt/puppetlabs/server/apps/puppetserver/scripts/install.sh mode=-rwxr-xr-x owner=root group=root md5=1370f5bdab96e0667db7b25e53ef75c6
 /opt/puppetlabs/server/bin/puppetserver mode=lrwxrwxrwx owner=root group=root md5=
 /opt/puppetlabs/server/data/puppetserver mode=drwxr-xr-x owner=puppet group=puppet md5=
 /opt/puppetlabs/server/data/puppetserver/jars mode=drwxr-xr-x owner=puppet group=puppet md5=
