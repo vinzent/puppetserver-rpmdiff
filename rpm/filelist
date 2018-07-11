@@ -1,6 +1,6 @@
 /etc/puppetlabs/puppetserver mode=drwxr-x--- owner=puppet group=puppet md5=
 /etc/puppetlabs/puppetserver/conf.d mode=drwxr-xr-x owner=root group=root md5=
-/etc/puppetlabs/puppetserver/conf.d/auth.conf mode=-rw-r--r-- owner=root group=root md5=dac79a506fcd9819b4947a6b9e14db17
+/etc/puppetlabs/puppetserver/conf.d/auth.conf mode=-rw-r--r-- owner=root group=root md5=3987c677627275c1432ff51f5969d1ef
 /etc/puppetlabs/puppetserver/conf.d/global.conf mode=-rw-r--r-- owner=root group=root md5=6f20c7df1ba82b4adc29410e4237dd98
 /etc/puppetlabs/puppetserver/conf.d/metrics.conf mode=-rw-r--r-- owner=root group=root md5=25b75a5a84fa82e4d5fd250c98fec711
 /etc/puppetlabs/puppetserver/conf.d/puppetserver.conf mode=-rw-r--r-- owner=root group=root md5=361c5ce5bb7e5d7701b93b2c575b0a13
@@ -14,7 +14,7 @@
 /opt/puppetlabs/bin/puppetserver mode=lrwxrwxrwx owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/bin mode=drwxr-xr-x owner=root group=root md5=
-/opt/puppetlabs/server/apps/puppetserver/bin/puppetserver mode=-rwxr-xr-x owner=root group=root md5=39a3cb38975260d69d84e82a2a19491e
+/opt/puppetlabs/server/apps/puppetserver/bin/puppetserver mode=-rwxr-xr-x owner=root group=root md5=f23543487396d1c6152ef3a16c5bdd93
 /opt/puppetlabs/server/apps/puppetserver/cli mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/cli/apps mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/cli/apps/foreground mode=-rwxr-xr-x owner=root group=root md5=4333fd71c51238805a617b1ea31be261
@@ -29,8 +29,8 @@
 /opt/puppetlabs/server/apps/puppetserver/config/services.d mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/config/services.d/bootstrap.cfg mode=-rw-r--r-- owner=root group=root md5=74f185e02caa195bdb7d1ccb4750d3d6
 /opt/puppetlabs/server/apps/puppetserver/ezbake-functions.sh mode=-rwxr-xr-x owner=root group=root md5=c130f4a6e05ed169b43417ec015323e7
-/opt/puppetlabs/server/apps/puppetserver/ezbake.manifest mode=-rw-r--r-- owner=root group=root md5=25a4998e8d0e624b684d5a0685af8e86
-/opt/puppetlabs/server/apps/puppetserver/puppet-server-release.jar mode=-rw-r--r-- owner=root group=root md5=70c41d90a3c799c74596c972c89abc6f
+/opt/puppetlabs/server/apps/puppetserver/ezbake.manifest mode=-rw-r--r-- owner=root group=root md5=ebabf5504b186dd3b4d7689f668b214c
+/opt/puppetlabs/server/apps/puppetserver/puppet-server-release.jar mode=-rw-r--r-- owner=root group=root md5=3d42bae3dbb3b2ac276c8d9489917f4e
 /opt/puppetlabs/server/apps/puppetserver/scripts mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/scripts/install.sh mode=-rwxr-xr-x owner=root group=root md5=d68f240c0452060556655d227c4d3da4
 /opt/puppetlabs/server/bin/puppetserver mode=lrwxrwxrwx owner=root group=root md5=
