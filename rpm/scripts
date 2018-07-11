@@ -1,0 +1,38 @@
+preinstall scriptlet (using /bin/sh):
+# Note: changes to this section of the spec may require synchronisation with the
+# install.sh source based installation methodology.
+#
+# Add puppet group
+getent group puppet > /dev/null || \
+  groupadd -r puppet || :
+# Add puppet user
+if getent passwd puppet > /dev/null; then
+  usermod --gid puppet --home /opt/puppetlabs/server/data/puppetserver \
+  --comment "puppetserver daemon" puppet || :
+else
+  useradd -r --gid puppet --home /opt/puppetlabs/server/data/puppetserver --shell $(which nologin) \
+    --comment "puppetserver daemon"  puppet || :
+fi
+postinstall scriptlet (using /bin/sh):
+/opt/puppetlabs/server/apps/puppetserver/scripts/install.sh postinst_redhat
+# Reload the systemd units
+systemctl daemon-reload >/dev/null 2>&1 || :
+
+if [ $1 -eq 1 ] ; then 
+        # Initial installation 
+        systemctl preset puppetserver.service >/dev/null 2>&1 || : 
+fi
+preuninstall scriptlet (using /bin/sh):
+
+if [ $1 -eq 0 ] ; then 
+        # Package removal, not upgrade 
+        systemctl --no-reload disable puppetserver.service > /dev/null 2>&1 || : 
+        systemctl stop puppetserver.service > /dev/null 2>&1 || : 
+fi
+postuninstall scriptlet (using /bin/sh):
+
+systemctl daemon-reload >/dev/null 2>&1 || : 
+if [ $1 -ge 1 ] ; then 
+        # Package upgrade, not uninstall 
+        systemctl try-restart puppetserver.service >/dev/null 2>&1 || : 
+fi
