@@ -14,7 +14,7 @@
 /opt/puppetlabs/bin/puppetserver mode=lrwxrwxrwx owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/bin mode=drwxr-xr-x owner=root group=root md5=
-/opt/puppetlabs/server/apps/puppetserver/bin/puppetserver mode=-rwxr-xr-x owner=root group=root md5=f27de4754facd1fe5bae389641f0d6bb
+/opt/puppetlabs/server/apps/puppetserver/bin/puppetserver mode=-rwxr-xr-x owner=root group=root md5=ae84a4b3b4e48b7288e3d0eed7fee419
 /opt/puppetlabs/server/apps/puppetserver/cli mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/cli/apps mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/cli/apps/foreground mode=-rwxr-xr-x owner=root group=root md5=4333fd71c51238805a617b1ea31be261
@@ -29,8 +29,8 @@
 /opt/puppetlabs/server/apps/puppetserver/config/services.d mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/config/services.d/bootstrap.cfg mode=-rw-r--r-- owner=root group=root md5=74f185e02caa195bdb7d1ccb4750d3d6
 /opt/puppetlabs/server/apps/puppetserver/ezbake-functions.sh mode=-rwxr-xr-x owner=root group=root md5=c130f4a6e05ed169b43417ec015323e7
-/opt/puppetlabs/server/apps/puppetserver/ezbake.manifest mode=-rw-r--r-- owner=root group=root md5=d13e46020d8f6a3921c7a1ceeb8f886c
-/opt/puppetlabs/server/apps/puppetserver/puppet-server-release.jar mode=-rw-r--r-- owner=root group=root md5=794515d83b4f94399ed529528904ce1e
+/opt/puppetlabs/server/apps/puppetserver/ezbake.manifest mode=-rw-r--r-- owner=root group=root md5=587afb10d863e7e393226fc0eff60572
+/opt/puppetlabs/server/apps/puppetserver/puppet-server-release.jar mode=-rw-r--r-- owner=root group=root md5=d70aa94cc2234fc17cd7534b36767e28
 /opt/puppetlabs/server/apps/puppetserver/scripts mode=drwxr-xr-x owner=root group=root md5=
 /opt/puppetlabs/server/apps/puppetserver/scripts/install.sh mode=-rwxr-xr-x owner=root group=root md5=d68f240c0452060556655d227c4d3da4
 /opt/puppetlabs/server/bin/puppetserver mode=lrwxrwxrwx owner=root group=root md5=
